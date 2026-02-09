@@ -193,7 +193,10 @@ export class ConvListViewModel extends BaseConvListViewModel{
           result.push(...cursorResult.getResult());
         }
       } while (this.nextCursor)
-      this.sortConversations();
+      this.dataList = result;
+      if (this.dataList.length > 0) {
+        this.sortConversations();
+      }
     } else {
       let result = ConversationRepo.getConversations();
       if (!result) {
