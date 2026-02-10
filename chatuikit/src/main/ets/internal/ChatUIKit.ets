@@ -53,6 +53,7 @@ class ChatUIKit {
 
   async loginWithPassword(userId: string, password: string): Promise<void> {
     try {
+      userId = userId.toLowerCase();
       await ChatClient.getInstance().login(userId, password);
       this.setCurrentUser(createProfile(userId));
       mentionManager.getAtMapFromDP();
@@ -63,6 +64,7 @@ class ChatUIKit {
 
   async login(userId: string, token: string): Promise<void> {
     try {
+      userId = userId.toLowerCase();
       await ChatClient.getInstance().loginWithToken(userId, token);
       this.setCurrentUser(createProfile(userId));
       mentionManager.getAtMapFromDP();

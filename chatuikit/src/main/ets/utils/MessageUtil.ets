@@ -126,7 +126,7 @@ export function isSender(message: ChatMessage): boolean {
   if (!uikit.isInited()) {
     return false;
   }
-  return message.getFrom() == uikit.sdk.getCurrentUser()
+  return message.getFrom().toLowerCase() === uikit.sdk.getCurrentUser().toLowerCase()
 }
 
 /**
