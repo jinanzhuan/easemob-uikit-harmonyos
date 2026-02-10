@@ -247,7 +247,7 @@ export class MessageViewModel extends BaseMessageViewModel {
             message.setExt(ext);
           }
         } else {
-          message.setJsonAttribute(KitConstants.MESSAGE_ATTR_AT_MSG, JSON.stringify(content.atList));
+          message.setJsonAttribute(KitConstants.MESSAGE_ATTR_AT_MSG, content.atList);
         }
       }
     }

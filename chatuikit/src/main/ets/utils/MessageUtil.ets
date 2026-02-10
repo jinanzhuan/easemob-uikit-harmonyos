@@ -758,7 +758,7 @@ export function getReplyExt(message: ChatMessage | ChatKitMessage) {
     info[KitConstants.REPLY_MSG_PREVIEW] = `[${ContentType[type].toLowerCase()}]`;
     info[KitConstants.REPLY_MSG_TYPE] = ContentType[type].toLowerCase();
   }
-  return JSON.stringify(info);
+  return info;
 }
 
 /**
@@ -973,7 +973,7 @@ export function isGroupMentionMessage(message: ChatMessage | ChatKitMessage) {
   }
   let ext = msg.ext();
   if (ext.has(KitConstants.MESSAGE_ATTR_AT_MSG)) {
-    let mentionListJson = ext.get(KitConstants.MESSAGE_ATTR_AT_MSG) as string;
+    let mentionListJson = ext.get(KitConstants.MESSAGE_ATTR_AT_MSG) as string[];
     if (mentionListJson.includes(KitConstants.AT_ALL_LABEL)) {
       return true;
     }
@@ -1022,7 +1022,7 @@ export function addUserInfo(message: ChatMessage) {
   if (user.remark) {
     info.remark = user.remark;
   }
-  message.setJsonAttribute(KitConstants.MESSAGE_EXT_USER_INFO_KEY, JSON.stringify(info));
+  message.setJsonAttribute(KitConstants.MESSAGE_EXT_USER_INFO_KEY, info);
 }
 
 /**
@@ -1043,8 +1043,13 @@ export function isIncludeUserInfo(message: ChatMessage) {
 export function getUserInfoFromMessage(message: ChatMessage): ChatUser | undefined {
   if (isIncludeUserInfo(message)) {
     let ext = message.ext();
-    let userJsonStr = ext.get(KitConstants.MESSAGE_EXT_USER_INFO_KEY) as string;
-    let userInfo: object | null = parseJson(userJsonStr);
+    let userJsonStr = ext.get(KitConstants.MESSAGE_EXT_USER_INFO_KEY);
+    let userInfo: object | null = null;
+    if (typeof userJsonStr === 'string') {
+      userInfo = parseJson(userJsonStr);
+    } else if (typeof userJsonStr === 'object') {
+      userInfo = userJsonStr as object;
+    }
     if (userInfo) {
       let keys = Object.keys(userInfo);
       let user = new ChatUser(message.getFrom());
