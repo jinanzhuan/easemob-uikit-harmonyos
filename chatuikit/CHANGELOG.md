@@ -1,5 +1,15 @@
 # 更新日志
 
+## 版本 V1.11.1 2026-3-6
+
+### 修复
+
+- 修复登录时 userId 中有大写字母，导致消息列表展示异常的问题。
+- 修复使用 `ConvListViewModel` 拉取服务器会话列表时展示异常的问题。
+- 导出 `ConversationLatestMessageContentProvider`。
+- 升级 IM SDK 到 1.11.1 版本，以支持 `ChatMessage` 可以设置多个 `ChatCallback`。
+- 适配升级到 IM SDK 1.11.1 版本后，消息扩展信息的变动。[消息扩展升级指南](https://doc.easemob.com/document/harmonyos/message_extension_optimize.html)。
+
 ## 版本 V1.0.2 2025-6-25
 
 ### 修复
