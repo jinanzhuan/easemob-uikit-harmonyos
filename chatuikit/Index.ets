@@ -44,6 +44,7 @@ export { ChatMessageBubbleProvider } from './src/main/ets/interfaces/ChatMessage
 export { ChatMessageItemProvider } from './src/main/ets/interfaces/ChatMessageItemProvider'
 export * from './src/main/ets/interfaces/CommonCallback'
 export { ConversationItemProvider } from './src/main/ets/interfaces/ConversationItemProvider'
+export { ConversationLatestMessageContentProvider } from './src/main/ets/interfaces/ConversationLatestMessageContentProvider'
 export { ProfileProvider as UserProfileProvider } from './src/main/ets/interfaces/UserProfileProvider'
 
 export * from './src/main/ets/manager/ChatConvInfoManager'
